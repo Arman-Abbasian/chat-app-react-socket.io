@@ -6,6 +6,7 @@ import Logo from "../assets/logo.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { registerRoute } from "../utils/APIRoutes";
+import Layout from "../components/Layout";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -83,7 +84,7 @@ export default function Register() {
   };
 
   return (
-    <>
+    <Layout>
       <FormContainer>
         <form action="" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
@@ -115,7 +116,7 @@ export default function Register() {
         </form>
       </FormContainer>
       <ToastContainer />
-    </>
+    </Layout>
   );
 }
 
@@ -127,7 +128,6 @@ const FormContainer = styled.div`
   justify-content: center;
   gap: 1rem;
   align-items: center;
-  background-color: #131324;
   .brand {
     display: flex;
     align-items: center;

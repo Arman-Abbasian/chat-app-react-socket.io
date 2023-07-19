@@ -35,10 +35,8 @@ input {
 }
 
 body {
-  max-height: 100vh;
   max-width: 100vw;
-  overflow: hidden;
-  padding: 1rem;
+  padding: 2rem;
   direction: rtl;
   font-size: 14px;
 }
