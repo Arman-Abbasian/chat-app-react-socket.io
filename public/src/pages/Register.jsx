@@ -121,13 +121,18 @@ export default function Register() {
 }
 
 const FormContainer = styled.div`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-  align-items: center;
+height: 496px;
+top: 114px;
+left: 352px;
+border-radius: 16px;
+border: 1px;
+gap: 32px;
+background-image: linear-gradient(40.03deg, #FD2F70 6.56%, rgba(255, 255, 255, 0) 31.04%, rgba(255, 255, 255, 0) 73.23%, #FD2F70 100%),
+linear-gradient(0deg, #FFFFFF, #FFFFFF);
+border: 1px solid;
+box-shadow: 0px 0px 32px 0px #7D6D721F;
+
+
   .brand {
     display: flex;
     align-items: center;
