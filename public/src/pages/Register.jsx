@@ -11,16 +11,14 @@ export default function Register() {
   const navigate = useNavigate();
   const toastOptions = {
     position: "bottom-right",
-    autoClose: 8000,
+    autoClose: 3000,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark",
   };
   const [values, setValues] = useState({
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   useEffect(() => {
@@ -108,12 +106,6 @@ export default function Register() {
             type="password"
             placeholder="Password"
             name="password"
-            onChange={(e) => handleChange(e)}
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            name="confirmPassword"
             onChange={(e) => handleChange(e)}
           />
           <button type="submit">Create User</button>
