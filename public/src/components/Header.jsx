@@ -39,7 +39,7 @@ const HeaderContainer = styled.div`
     width:100%;
     justify-content:space-between;
     align-items:center;
-    padding: 16px 120px;
+    padding: 16px 120px 16px 120px;
     .Right{
         display: flex;
     gap:32px;
