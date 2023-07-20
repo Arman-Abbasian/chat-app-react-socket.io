@@ -8,6 +8,7 @@ import ChatContainer from "../components/ChatContainer";
 import Contacts from "../components/Contacts";
 import Welcome from "../components/Welcome";
 import Layout from "../components/Layout";
+import ChatLayout from "../components/ChatLayout";
 
 export default function Chat() {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ export default function Chat() {
     setCurrentChat(chat);
   };
   return (
-    <Layout>
+    <ChatLayout>
       <ChatSectionContainer>
           <Contacts contacts={contacts} changeChat={handleChatChange} />
           
@@ -59,7 +60,7 @@ export default function Chat() {
             <ChatContainer currentChat={currentChat} socket={socket} />
           )}
       </ChatSectionContainer>
-    </Layout>
+    </ChatLayout>
   );
 }
 

@@ -7,9 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { registerRoute } from "../utils/APIRoutes";
 import Layout from "../components/Layout";
-import InputForm from "../components/InputForm";
 import { useForm } from "react-hook-form"
-import UsernameInput from "../components/Inputs/UsernameInput";
 import googleLogo from '../assets/googleLogo.png'
 
 export default function Register() {
