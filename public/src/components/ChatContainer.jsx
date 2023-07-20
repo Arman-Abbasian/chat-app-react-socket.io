@@ -72,18 +72,20 @@ export default function ChatContainer({ currentChat, socket }) {
   return (
     <ChattContainer>
       <div className="Top">
-        <div className="user-details">
-          <div className="avatar">
-            <img
-              src={`data:image/svg+xml;base64,${currentChat.avatarImage}`}
-              alt=""
-            />
-          </div>
-          <div className="username">
-            <h3>{currentChat.username}</h3>
-          </div>
+        <div className="UserProfile">
+          <div className="User">
+                    <span className="formSvgSpan">
+                      <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12.1586 12.6144C12.1286 12.6144 12.1086 12.6144 12.0786 12.6144C12.0286 12.6044 11.9586 12.6044 11.8986 12.6144C8.99859 12.5244 6.80859 10.2444 6.80859 7.43438C6.80859 4.57438 9.13859 2.24438 11.9986 2.24438C14.8586 2.24438 17.1886 4.57438 17.1886 7.43438C17.1786 10.2444 14.9786 12.5244 12.1886 12.6144C12.1786 12.6144 12.1686 12.6144 12.1586 12.6144ZM11.9986 3.74438C9.96859 3.74438 8.30859 5.40438 8.30859 7.43438C8.30859 9.43438 9.86859 11.0444 11.8586 11.1144C11.9086 11.1044 12.0486 11.1044 12.1786 11.1144C14.1386 11.0244 15.6786 9.41438 15.6886 7.43438C15.6886 5.40438 14.0286 3.74438 11.9986 3.74438Z" fill="#382F3B"/>
+                      <path d="M12.1696 23.5444C10.2096 23.5444 8.23961 23.0444 6.74961 22.0444C5.35961 21.1244 4.59961 19.8644 4.59961 18.4944C4.59961 17.1244 5.35961 15.8544 6.74961 14.9244C9.74961 12.9344 14.6096 12.9344 17.5896 14.9244C18.9696 15.8444 19.7396 17.1044 19.7396 18.4744C19.7396 19.8444 18.9796 21.1144 17.5896 22.0444C16.0896 23.0444 14.1296 23.5444 12.1696 23.5444ZM7.57961 16.1844C6.61961 16.8244 6.09961 17.6444 6.09961 18.5044C6.09961 19.3544 6.62961 20.1744 7.57961 20.8044C10.0696 22.4744 14.2696 22.4744 16.7596 20.8044C17.7196 20.1644 18.2396 19.3444 18.2396 18.4844C18.2396 17.6344 17.7096 16.8144 16.7596 16.1844C14.2696 14.5244 10.0696 14.5244 7.57961 16.1844Z" fill="#382F3B"/>
+                      </svg>
+                    </span>
+            </div>
+            <div className="Name">
+              <h3 className="Text">{currentChat.username}</h3>
+              <p className="online">سطح کاربری دو</p>
+            </div>
         </div>
-        <Logout />
       </div>
       <div className="Chat">
         {messages.map((message) => {
@@ -109,13 +111,16 @@ export default function ChatContainer({ currentChat, socket }) {
 }
 
 const ChattContainer = styled.div`
-width: 100%
+width: 100%;
 height: 100%;
+display:flex;
+flex-direction:column;
 padding: 24px;
+position:relative;
 border-radius: 16px;
 border: 1px;
 gap: 24px;
-background: linear-gradient(40.03deg, #FD2F70 6.56%, rgba(255, 255, 255, 0) 31.04%, rgba(255, 255, 255, 0) 73.23%, #FD2F70 100%),
+background-color: linear-gradient(40.03deg, #FD2F70 6.56%, rgba(255, 255, 255, 0) 31.04%, rgba(255, 255, 255, 0) 73.23%, #FD2F70 100%),
 linear-gradient(0deg, #FFFFFF, #FFFFFF);
 border: 1px solid;
 border-image-source: linear-gradient(40.03deg, #FD2F70 6.56%, rgba(255, 255, 255, 0) 31.04%, rgba(255, 255, 255, 0) 73.23%, #FD2F70 100%);
@@ -131,7 +136,40 @@ align-items:center;
 gap: 16px;
 display:flex;
 flex-direction:column;
-
+flex:1 1 0%;
+overflow:auto;
 }
-  
+.UserProfile{
+display:flex;
+align-items:center;
+gap:8px;
+}
+.Name{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+.User{
+  width: 48px;
+height: 48px;
+border-radius: 8px;
+display:flex;
+justify-content:center;
+align-items:center;
+background-color: #7D7D7D;
+}
+.Text{
+font-weight: 700;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: left;
+color: #4F4F4F;
+}
+.online{
+font-size: 12px;
+font-weight: 500;
+line-height: 19px;
+letter-spacing: 0em;
+color: #7D7D7D;               
+}
 `;

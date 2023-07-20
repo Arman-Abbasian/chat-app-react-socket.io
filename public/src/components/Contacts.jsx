@@ -28,14 +28,11 @@ export default function Contacts({ contacts, changeChat }) {
           <div className="Contacts">
             {contacts.map((contact, index) => {
               return (
-               <div className="Contact">
+               <div className={`Contact ${index === currentSelected ? "selected" : ""}`}
+                  onClick={() => changeCurrentChat(index, contact)}>
                  <div
                   key={contact._id}
-                  className={`UserProfile ${
-                    index === currentSelected ? "selected" : ""
-                  }`}
-                  onClick={() => changeCurrentChat(index, contact)}
-                >
+                  className='UserProfile'>
                   <div className="User">
                   <span className="formSvgSpan">
                     <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,6 +108,11 @@ color: #FD2F70;
   display:flex;
   align-items:center;
   gap:8px;
+  cursor:pointer;
+}
+.selected{
+  background-color: #F2F2F2;
+
 }
   .User{
     width: 48px;
