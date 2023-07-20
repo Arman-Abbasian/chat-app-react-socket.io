@@ -55,14 +55,13 @@ export default function Footer() {
 const FooterContainer = styled.div`
 width:100%;
 height: 48px;
-top: 684px;
+margin-top: auto;
 padding: 12px 121px 12px 122px;
 border: 1px 0px 0px 0px;
 border-top: 1px solid #F2F2F2;
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-top:30px;
 .Text{
 height: 22px;
 top: 13px;

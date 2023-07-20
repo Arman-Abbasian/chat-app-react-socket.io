@@ -1,15 +1,22 @@
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
+import styled from "styled-components";
 
 function Layout({children}) {
   return (
-    <div>
+    <LayoutContainer>
         <Header />
         {children}
         <Footer />
-    </div>
+    </LayoutContainer>
   )
 }
 
-export default Layout
+export default Layout;
+
+const LayoutContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
