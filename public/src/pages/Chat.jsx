@@ -7,24 +7,30 @@ import { allUsersRoute, host } from "../utils/APIRoutes";
 import ChatContainer from "../components/ChatContainer";
 import Contacts from "../components/Contacts";
 import Welcome from "../components/Welcome";
+import Layout from "../components/Layout";
 
 export default function Chat() {
   const navigate = useNavigate();
   const socket = useRef();
+  //all users instead of logged user
   const [contacts, setContacts] = useState([]);
   const [currentChat, setCurrentChat] = useState(undefined);
+  //logged user data
   const [currentUser, setCurrentUser] = useState(undefined);
+
+  //check the logged user exist or not
   useEffect(async () => {
-    if (!localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
+    if (!localStorage.getItem("chat-app-current-user")) {
       navigate("/login");
     } else {
       setCurrentUser(
         await JSON.parse(
-          localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+          localStorage.getItem("chat-app-current-user")
         )
       );
     }
   }, []);
+  
   useEffect(() => {
     if (currentUser) {
       socket.current = io(host);
@@ -32,23 +38,19 @@ export default function Chat() {
     }
   }, [currentUser]);
 
+  //get all users instead of logged user
   useEffect(async () => {
     if (currentUser) {
-      if (currentUser.isAvatarImageSet) {
         const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
         setContacts(data.data);
-      } else {
-        navigate("/setAvatar");
-      }
     }
   }, [currentUser]);
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   };
   return (
-    <>
+    <Layout>
       <ChatSectionContainer>
-        <div className="container">
           <Contacts contacts={contacts} changeChat={handleChatChange} />
           
           {currentChat === undefined ? (
@@ -56,17 +58,17 @@ export default function Chat() {
           ) : (
             <ChatContainer currentChat={currentChat} socket={socket} />
           )}
-        </div>
       </ChatSectionContainer>
-    </>
+    </Layout>
   );
 }
 
 const ChatSectionContainer = styled.div`
-width: 1,200px;
+width: 1200px;
 height:517px;
 top: 96px;
-left: 120px;
 gap: 24px;
 display:flex;
+margin-left:auto;
+margin-right:auto
 `;

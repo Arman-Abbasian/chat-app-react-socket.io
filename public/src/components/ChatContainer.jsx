@@ -71,7 +71,7 @@ export default function ChatContainer({ currentChat, socket }) {
 
   return (
     <ChattContainer>
-      <div className="chat-header">
+      <div className="Top">
         <div className="user-details">
           <div className="avatar">
             <img
@@ -85,7 +85,7 @@ export default function ChatContainer({ currentChat, socket }) {
         </div>
         <Logout />
       </div>
-      <div className="chat-messages">
+      <div className="Chat">
         {messages.map((message) => {
           return (
             <div ref={scrollRef} key={uuidv4()}>
@@ -104,78 +104,34 @@ export default function ChatContainer({ currentChat, socket }) {
       </div>
       <ChatInput handleSendMsg={handleSendMsg} />
     </ChattContainer>
+    
   );
 }
 
 const ChattContainer = styled.div`
-width: 384px;
-padding: 16px;
+width: 100%
+height: 100%;
+padding: 24px;
 border-radius: 16px;
+border: 1px;
+gap: 24px;
+background: linear-gradient(40.03deg, #FD2F70 6.56%, rgba(255, 255, 255, 0) 31.04%, rgba(255, 255, 255, 0) 73.23%, #FD2F70 100%),
+linear-gradient(0deg, #FFFFFF, #FFFFFF);
+border: 1px solid;
+border-image-source: linear-gradient(40.03deg, #FD2F70 6.56%, rgba(255, 255, 255, 0) 31.04%, rgba(255, 255, 255, 0) 73.23%, #FD2F70 100%);
+box-shadow: 0px 0px 32px 0px #7D6D721F;
+
+.Top{
+height: 48px;
 gap: 8px;
+display:flex;
+align-items:center;
+}
+.Chat{
+gap: 16px;
 display:flex;
 flex-direction:column;
 
-  .chat-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-    .user-details {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      .avatar {
-        img {
-          height: 3rem;
-        }
-      }
-      .username {
-        h3 {
-          color: white;
-        }
-      }
-    }
-  }
-  .chat-messages {
-    padding: 1rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    overflow: auto;
-    &::-webkit-scrollbar {
-      width: 0.2rem;
-      &-thumb {
-        background-color: #ffffff39;
-        width: 0.1rem;
-        border-radius: 1rem;
-      }
-    }
-    .message {
-      display: flex;
-      align-items: center;
-      .content {
-        max-width: 40%;
-        overflow-wrap: break-word;
-        padding: 1rem;
-        font-size: 1.1rem;
-        border-radius: 1rem;
-        color: #d1d1d1;
-        @media screen and (min-width: 720px) and (max-width: 1080px) {
-          max-width: 70%;
-        }
-      }
-    }
-    .sended {
-      justify-content: flex-end;
-      .content {
-        background-color: #4f04ff21;
-      }
-    }
-    .recieved {
-      justify-content: flex-start;
-      .content {
-        background-color: #9900ff20;
-      }
-    }
-  }
+}
+  
 `;

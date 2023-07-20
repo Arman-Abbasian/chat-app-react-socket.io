@@ -5,7 +5,7 @@ import { useNavigate, Link, NavLink } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { registerRoute } from "../utils/APIRoutes";
+import { loginRoute } from "../utils/APIRoutes";
 import Layout from "../components/Layout";
 import InputForm from "../components/InputForm";
 import { useForm } from "react-hook-form"
@@ -26,15 +26,26 @@ export default function Register() {
     formState: { errors }
   } = useForm();
   console.log(errors)
-  // const [values, setValues] = useState({
-  //   username: "",
-  //   email: "",
-  //   password: "",
-  // });
-  const onSubmit = (data) => console.log(data)
-
+  const onSubmit = async(formData) => {
+      const { email, password } = formData;
+      const { data } = await axios.post(loginRoute, {
+        email,
+        password,
+      });
+      if (data.status === false) {
+        toast.error(data.msg, toastOptions);
+      }
+      if (data.status === true) {
+        localStorage.setItem(
+          "chat-app-current-user",
+          JSON.stringify(data.user)
+        )
+        navigate("/");
+      }
+  }
+console.log(process.env.REACT_APP_LOCALHOST_KEY)
   useEffect(() => {
-    if (localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
+    if (localStorage.getItem("chat-app-current-user")) {
       navigate("/");
     }
   }, []);
