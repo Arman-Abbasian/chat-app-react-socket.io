@@ -10,6 +10,7 @@ import Layout from "../components/Layout";
 import InputForm from "../components/InputForm";
 import { useForm } from "react-hook-form"
 import UsernameInput from "../components/Inputs/UsernameInput";
+import googleLogo from '../assets/googleLogo.png'
 
 export default function Register() {
   const navigate = useNavigate();
@@ -200,8 +201,9 @@ export default function Register() {
           <button className="button primaryButton" type="submit">ثبت نام</button>
           <NavLink className="googleRegister">
             <span>
+              <img src={googleLogo} alt="googleLogo" className="googleLogo"/>
             </span>
-            <p>ثبت نام با حساب گوگل</p>
+            <p className="googleRegisterText">ثبت نام با حساب گوگل</p>
           </NavLink>
           <span className="enter">
             حساب کاربری دارید ? <Link className="enterLink" to="/login">ورود</Link>
@@ -221,39 +223,44 @@ export default function Register() {
 }
 
 const FormContainer = styled.div`
-width:60%;
+width:55%;
 margin-left: auto;
 margin-right: auto;
 top: 114px;
 display:grid;
-grid-template-columns: auto auto;
+grid-template-columns: repeat(2, minmax(0, 1fr));
 left: 352px;
 border-radius: 16px;
 border: 10px;
 gap: 32px;
 background-image: linear-gradient(40.03deg, #FD2F70 6.56%, rgba(255, 255, 255, 0) 31.04%, rgba(255, 255, 255, 0) 73.23%, #FD2F70 100%),
 linear-gradient(0deg, #FFFFFF, #FFFFFF);
+
 border: 1px solid;
 border-image-source: linear-gradient(40.03deg, #FD2F70 6.56%, rgba(255, 255, 255, 0) 31.04%, rgba(255, 255, 255, 0) 73.23%, #FD2F70 100%);
-background: linear-gradient(40.03deg, #FD2F70 6.56%, rgba(255, 255, 255, 0) 31.04%, rgba(255, 255, 255, 0) 73.23%, #FD2F70 100%),
-linear-gradient(0deg, #FFFFFF, #FFFFFF);
+
 box-shadow: 0px 0px 32px 0px #7D6D721F;
+
 
 
   .pattern {
     display:flex;
     justify-content:center;
-    align-items:center
+    align-items:center;
+    background-color:white;
   }
   .Login{
-    width: 500px;
-padding: 15px 3px 4px 3px;
-border-radius: 12px;
-gap: 24px;
+    padding: 40px 32px 40px 32px;
+    border-radius: 12px;
+    gap: 24px;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
 
   }
   .content{
-    gap:16px
+    gap:16px;
+    width:320px;
   }
   .formTitle{
 font-size: 24px;
@@ -269,7 +276,6 @@ color: #FD2F70;
     flex-direction: column;
     gap: 2rem;
     border-radius: 2rem;
-    padding: 3rem 5rem;
   }
   input {
     background-color: transparent;
@@ -362,13 +368,28 @@ text-decoration:none;
   }
   .googleRegister{
     width: 100%;
-height: 64px;
-padding: 16px;
-border-radius: 8px;
-gap: 8px;
-background-color: #F2F2F2;
-display:flex;
-align-items:center;
+    height: 64px;
+    padding: 16px;
+    border-radius: 8px;
+    gap: 8px;
+    background-color: #F2F2F2;
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+    display:flex;
+    align-items:center
+  }
+  .googleLogo{
+    width:32px;
+    height:32px
+  }
+  .googleRegisterText{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #7D7D7D;
   }
   .enter{
     color: #4F4F4F;
