@@ -384,11 +384,8 @@ text-decoration:none;
     height:32px
   }
   .googleRegisterText{
-    font-size: 14px;
-    font-weight: 400;
     line-height: 22px;
     letter-spacing: 0em;
-    text-align: left;
     color: #7D7D7D;
   }
   .enter{

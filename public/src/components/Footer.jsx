@@ -14,7 +14,7 @@ export default function Footer() {
   return (
     <>
     <FooterContainer>
-        <p className="text">ویستا، پلتفرم معاملات ارز دیجیتال</p>
+        <p className="Text">ویستا، پلتفرم معاملات ارز دیجیتال</p>
         <div className="ContentInfo">
             <span>
               <svg width="24" height="24" viewBox="0 0 24 25" stroke="#FD2F70" xmlns="http://www.w3.org/2000/svg">

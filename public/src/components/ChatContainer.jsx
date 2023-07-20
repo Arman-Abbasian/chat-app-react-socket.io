@@ -70,7 +70,7 @@ export default function ChatContainer({ currentChat, socket }) {
   }, [messages]);
 
   return (
-    <Container>
+    <ChattContainer>
       <div className="chat-header">
         <div className="user-details">
           <div className="avatar">
@@ -103,18 +103,18 @@ export default function ChatContainer({ currentChat, socket }) {
         })}
       </div>
       <ChatInput handleSendMsg={handleSendMsg} />
-    </Container>
+    </ChattContainer>
   );
 }
 
-const Container = styled.div`
-  display: grid;
-  grid-template-rows: 10% 80% 10%;
-  gap: 0.1rem;
-  overflow: hidden;
-  @media screen and (min-width: 720px) and (max-width: 1080px) {
-    grid-template-rows: 15% 70% 15%;
-  }
+const ChattContainer = styled.div`
+width: 384px;
+padding: 16px;
+border-radius: 16px;
+gap: 8px;
+display:flex;
+flex-direction:column;
+
   .chat-header {
     display: flex;
     justify-content: space-between;

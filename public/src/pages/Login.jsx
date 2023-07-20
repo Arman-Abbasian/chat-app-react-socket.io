@@ -138,7 +138,7 @@ export default function Register() {
             <span>
               <img src={googleLogo} alt="googleLogo" className="googleLogo"/>
             </span>
-            <p className="googleRegisterText">ثبت نام با حساب گوگل</p>
+            <p className="googleRegisterText"> ورود با حساب گوگل</p>
           </NavLink>
           <span className="enter">
             حساب کاربری ندارید ? <Link className="enterLink" to="/login">ثبت نام</Link>
@@ -319,11 +319,8 @@ text-decoration:none;
     height:32px
   }
   .googleRegisterText{
-    font-size: 14px;
-    font-weight: 400;
     line-height: 22px;
     letter-spacing: 0em;
-    text-align: left;
     color: #7D7D7D;
   }
   .enter{
