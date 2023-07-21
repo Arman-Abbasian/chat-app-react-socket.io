@@ -31,23 +31,31 @@ app.use("/api/messages", messageRoutes);
 const server = app.listen(process.env.PORT, () =>
   console.log(`Server started on port ${process.env.PORT}`)
 );
+//must add socket.io after run web server
 //socke.io config
+//make a new socket on "http://localhost:3000"
 const io = socket(server, {
   cors: {
     origin: "http://localhost:3000",
     credentials: true,
   },
 });
-
+// make a global varaible (onlineUsers)
 global.onlineUsers = new Map();
+//when the socket connection is implement...
 io.on("connection", (socket) => {
   global.chatSocket = socket;
+  //add-user event of socket
   socket.on("add-user", (userId) => {
+    console.log(userId,socket.id)
     onlineUsers.set(userId, socket.id);
   });
-
+  //send-msg event of socket
   socket.on("send-msg", (data) => {
+    console.log(data)
     const sendUserSocket = onlineUsers.get(data.to);
+    console.log(sendUserSocket)
+    //if the message recieved by the other person
     if (sendUserSocket) {
       socket.to(sendUserSocket).emit("msg-recieve", data.msg);
     }

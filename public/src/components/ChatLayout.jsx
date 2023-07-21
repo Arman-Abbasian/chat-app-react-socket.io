@@ -4,10 +4,10 @@ import Footer from './Footer'
 import styled from "styled-components";
 import ChatHeader from './ChatHeader';
 
-function ChatLayout({children}) {
+function ChatLayout({children,user}) {
   return (
     <LayoutContainer>
-        <ChatHeader />
+        <ChatHeader user={user} />
         {children}
         <Footer />
     </LayoutContainer>

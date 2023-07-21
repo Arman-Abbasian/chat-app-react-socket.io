@@ -7,10 +7,12 @@ import axios from "axios";
 import { sendMessageRoute, recieveMessageRoute } from "../utils/APIRoutes";
 
 export default function ChatContainer({ currentChat, socket }) {
+  //all messages between currrentUser and currentChat persons
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
 
+  // every time that currentUser chage the currentChat the messages satate fill with the chata between this two person
   useEffect(async () => {
     const data = await JSON.parse(
       localStorage.getItem("chat-app-current-user")
@@ -25,10 +27,7 @@ export default function ChatContainer({ currentChat, socket }) {
   useEffect(() => {
     const getCurrentChat = async () => {
       if (currentChat) {
-        await JSON.parse(
-          localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
-        )._id;
-      }
+      await JSON.parse(localStorage.getItem("chat-app-current-user"))._id};
     };
     getCurrentChat();
   }, [currentChat]);
@@ -42,21 +41,22 @@ export default function ChatContainer({ currentChat, socket }) {
       from: data._id,
       msg,
     });
-    await axios.post(sendMessageRoute, {
+    const response=await axios.post(sendMessageRoute, {
       from: data._id,
       to: currentChat._id,
       message: msg,
     });
-
+    //update the messages with out need the refresh
+    const time=response.data.data.createdAt
     const msgs = [...messages];
-    msgs.push({ fromSelf: true, message: msg });
+    msgs.push({ fromSelf: true, message: msg,time });
     setMessages(msgs);
   };
-
+//this section happen when get a message from currentChat person
   useEffect(() => {
     if (socket.current) {
       socket.current.on("msg-recieve", (msg) => {
-        setArrivalMessage({ fromSelf: false, message: msg });
+        setArrivalMessage({ fromSelf: false, message: msg,time:new Date()});
       });
     }
   }, []);
@@ -91,13 +91,10 @@ export default function ChatContainer({ currentChat, socket }) {
         {messages.map((message) => {
           return (
             <div ref={scrollRef} key={uuidv4()}>
-              <div
-                className={`message ${
-                  message.fromSelf ? "sended" : "recieved"
-                }`}
-              >
-                <div className="content ">
-                  <p>{message.message}</p>
+              <div className={`message ${message.fromSelf ? "":'messageNotMe'}`}>
+                <div className={`content ${message.fromSelf ? "":'contentNotMe'}`} >
+                  <p className="MsgText">{message.message}</p>
+                  <p className="MsgTime">{new Date(message.time).getHours()}:{new Date(message.time).getMinutes()}</p>
                 </div>
               </div>
             </div>
@@ -110,7 +107,7 @@ export default function ChatContainer({ currentChat, socket }) {
   );
 }
 
-const ChattContainer = styled.div`
+const ChattContainer = styled.div `
 width: 100%;
 height: 100%;
 display:flex;
@@ -127,49 +124,105 @@ border-image-source: linear-gradient(40.03deg, #FD2F70 6.56%, rgba(255, 255, 255
 box-shadow: 0px 0px 32px 0px #7D6D721F;
 
 .Top{
-height: 48px;
-gap: 8px;
-display:flex;
-align-items:center;
-}
-.Chat{
-gap: 16px;
-display:flex;
-flex-direction:column;
-flex:1 1 0%;
-overflow:auto;
-}
-.UserProfile{
-display:flex;
-align-items:center;
-gap:8px;
-}
-.Name{
+  height: 48px;
+  gap: 8px;
+  display:flex;
+  align-items:center;
+  .UserProfile{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    .User{
+      width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color: #7D7D7D;
+    }
+    }
+    .Name{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+    }
+    .Text{
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: right;
+    color: #4F4F4F;
+    }
+    .online{
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    color: #7D7D7D;               
+    }
+  }
+  .Chat{
+  gap: 16px;
   display:flex;
   flex-direction:column;
-  gap:7px;
-}
-.User{
-  width: 48px;
-height: 48px;
-border-radius: 8px;
-display:flex;
-justify-content:center;
-align-items:center;
-background-color: #7D7D7D;
-}
-.Text{
-font-weight: 700;
-line-height: 22px;
-letter-spacing: 0em;
-text-align: left;
-color: #4F4F4F;
-}
-.online{
-font-size: 12px;
-font-weight: 500;
-line-height: 19px;
-letter-spacing: 0em;
-color: #7D7D7D;               
-}
+  flex:1 1 0%;
+  padding:10px;
+  overflow:auto;
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    .messageNotMe{
+      justify-content:flex-end;
+      .contentNotMe{
+        background-color: #F2F2F2;
+      }
+    }
+  }
+  .message{
+    width: 100%;
+    gap: 8px;
+    display:flex;
+  }
+  .content{
+    max-width: 400px;
+  max-height: 120px;
+  padding: 12px 16px 4px 16px;
+  border-radius: 8px 8px 8px 0px;
+  gap: 12px;
+  angle: -180 deg;
+  background-color: #FD2F7014;
+  display:flex'
+  flex-direction:column;
+  }
+  .MsgText{
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: #333333;
+  }
+  .MsgTime{
+    font-family: Verdana;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0px;
+    text-align: right;
+    color: #7D7D7D;
+  }
+  
+
 `;

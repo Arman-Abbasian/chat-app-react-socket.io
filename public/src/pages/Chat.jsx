@@ -7,7 +7,6 @@ import { allUsersRoute, host } from "../utils/APIRoutes";
 import ChatContainer from "../components/ChatContainer";
 import Contacts from "../components/Contacts";
 import Welcome from "../components/Welcome";
-import Layout from "../components/Layout";
 import ChatLayout from "../components/ChatLayout";
 
 export default function Chat() {
@@ -15,6 +14,7 @@ export default function Chat() {
   const socket = useRef();
   //all users instead of logged user
   const [contacts, setContacts] = useState([]);
+  //who that current user want to chat with he or she
   const [currentChat, setCurrentChat] = useState(undefined);
   //logged user data
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -50,7 +50,7 @@ export default function Chat() {
     setCurrentChat(chat);
   };
   return (
-    <ChatLayout>
+    <ChatLayout user={currentUser?.username}>
       <ChatSectionContainer>
           <Contacts contacts={contacts} changeChat={handleChatChange} />
           
