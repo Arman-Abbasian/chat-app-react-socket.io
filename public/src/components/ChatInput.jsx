@@ -33,6 +33,7 @@ export default function ChatInput({ handleSendMsg }) {
         </button>
         </div>
         <input
+        dir="auto"
         className="Inputt"
           type="text"
           onChange={(e) => setMsg(e.target.value)}
