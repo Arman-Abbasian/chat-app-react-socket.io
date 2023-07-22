@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { useNavigate, Link, NavLink } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,6 +9,7 @@ import { registerRoute } from "../utils/APIRoutes";
 import Layout from "../components/Layout";
 import { useForm } from "react-hook-form"
 import googleLogo from '../assets/googleLogo.png'
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function Register() {
   const [showPassword,setShowPassword]=useState(false);
@@ -51,8 +52,31 @@ export default function Register() {
       navigate("/");
     }
   }, []);
-
-
+  const googleLogin = useGoogleLogin({
+    onSuccess: tokenResponse => {
+      axios.post(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${tokenResponse.access_token}`)
+      .then(async(res)=>{
+        const { email, user_id } = res.data;
+      const { data } = await axios.post(registerRoute, {
+        username:email,
+        email:email,
+        password:user_id,
+      });
+      if (data.status === false) {
+        toast.error(data.msg, toastOptions);
+      }
+      if (data.status === true) {
+        localStorage.setItem(
+          "chat-app-current-user",
+          JSON.stringify(data.user)
+        );
+        navigate("/");
+      }
+      })
+      .catch(err=>console.log(err))
+    }
+    //onError:error=>console.log(error)
+  });
   return (
     <Layout>
       <FormContainer>
@@ -233,12 +257,14 @@ export default function Register() {
           </div>
           
           <button disabled={!agree} className="button primaryButton submitButton" type="submit">ثبت نام</button>
-          <NavLink className="googleRegister">
+          {/*signup with google account*/}
+          <div className="googleRegister" onClick={() => googleLogin()}>
             <span>
               <img src={googleLogo} alt="googleLogo" className="googleLogo"/>
             </span>
             <p className="googleRegisterText">ثبت نام با حساب گوگل</p>
-          </NavLink>
+          </div>
+
           <span className="enter">
             حساب کاربری دارید ? <Link className="enterLink" to="/login">ورود</Link>
           </span>
@@ -410,7 +436,8 @@ text-decoration:none;
     align-items:center;
     text-decoration:none;
     display:flex;
-    align-items:center
+    align-items:center;
+    cursor:pointer;
   }
   .googleLogo{
     width:32px;

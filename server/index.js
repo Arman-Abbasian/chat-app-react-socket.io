@@ -8,6 +8,7 @@ const authRoutes = require("./routes/auth");
 const messageRoutes = require("./routes/messages");
 
 
+
 //cors config
 app.use(cors());
 //client data config

@@ -9,6 +9,7 @@ import { loginRoute } from "../utils/APIRoutes";
 import Layout from "../components/Layout";
 import { useForm } from "react-hook-form"
 import googleLogo from '../assets/googleLogo.png'
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function Register() {
   const [showPassword,setShowPassword]=useState(false);
@@ -24,7 +25,31 @@ export default function Register() {
     handleSubmit,
     formState: { errors }
   } = useForm();
-  console.log(errors)
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: tokenResponse => {
+      axios.post(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${tokenResponse.access_token}`)
+      .then(async(res)=>{
+        const { email, user_id } = res.data;
+      const { data } = await axios.post(loginRoute, {
+        email:email,
+        password:user_id,
+      });
+      if (data.status === false) {
+        toast.error(data.msg, toastOptions);
+      }
+      if (data.status === true) {
+        localStorage.setItem(
+          "chat-app-current-user",
+          JSON.stringify(data.user)
+        );
+        navigate("/");
+      }
+      })
+      .catch(err=>console.log(err))
+    }
+    //onError:error=>console.log(error)
+  });
   const onSubmit = async(formData) => {
       const { email, password } = formData;
       const { data } = await axios.post(loginRoute, {
@@ -156,7 +181,7 @@ console.log(process.env.REACT_APP_LOCALHOST_KEY)
           </div>       
           <button className="button primaryButton" type="submit">ورود</button>
           {/* enter with google section */}
-          <NavLink className="googleRegister">
+          <NavLink className="googleRegister" onClick={() => googleLogin()}>
             <span>
               <img src={googleLogo} alt="googleLogo" className="googleLogo"/>
             </span>
