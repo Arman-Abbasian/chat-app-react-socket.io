@@ -1,0 +1,16 @@
+{
+  "name": "chat-app-react-socket.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install-server": "cd server && npm install",
+    "start-server": "cd server && node app.js",
+    "install-client": "cd public && npm install",
+    "build-client": "cd public && npm run build",
+    "start-client": "cd public && npm run start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
