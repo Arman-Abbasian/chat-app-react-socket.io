@@ -47,8 +47,8 @@ export default function Register() {
       }
       })
       .catch(err=>console.log(err))
-    }
-    //onError:error=>console.log(error)
+    },
+    onError:error=>console.log(error)
   });
   const onSubmit = async(formData) => {
       const { email, password } = formData;

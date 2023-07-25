@@ -37,7 +37,7 @@ const server = app.listen(process.env.PORT, () =>
 //make a new socket on "http://localhost:3000"
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000","https://chat-app-front-iurm.onrender.com/"],
     credentials: true,
   },
 });
@@ -48,12 +48,10 @@ io.on("connection", (socket) => {
   global.chatSocket = socket;
   //add-user event of socket
   socket.on("add-user", (userId) => {
-    console.log(userId,socket.id)
     onlineUsers.set(userId, socket.id);
   });
   //send-msg event of socket
   socket.on("send-msg", (data) => {
-    console.log(data)
     const sendUserSocket = onlineUsers.get(data.to);
     console.log(sendUserSocket)
     //if the message recieved by the other person
