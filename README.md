@@ -3,11 +3,12 @@
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="36"  alt="CSS3" style="padding-right:10px;" align="left" />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="36"  alt="react" style="padding-right:10px;" align="left"/>
 <img src="https://res.cloudinary.com/practicaldev/image/fetch/s---xCsVK0j--/c_imagga_scale,f_auto,fl_progressive,h_1080,q_auto,w_1080/https://reacttraining.com/images/blog/reach-react-router-future.png"  alt="react-router-dom" width="36" alt="Terminal"  style="padding-right:10px;" align="left" />
-<img src="https://avatars.githubusercontent.com/u/53986236?v=4&s=400" width="36" alt="formik" style="padding-right:10px;" align="left" />
+<img src="https://avatars.githubusercontent.com/u/53986236?v=4&s=400" width="36" alt="react-hook-form" style="padding-right:10px;" align="left" />
 <img src="https://seeklogo.com/images/A/axios-logo-CD0C90458F-seeklogo.com.png" width="70" height="30" alt="axios" style="padding-right:10px;" align="left" />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="36" alt="nodejs" style="padding-right:10px;" align="left" />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="36" alt="mongodb" style="padding-right:10px;" align="left" />
 <img src="https://w7.pngwing.com/pngs/545/451/png-transparent-node-js-express-js-javascript-solution-stack-web-application-others-angle-text-rectangle-thumbnail.png" width="60" alt="express" style="padding-right:10px;" align="left" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Socket-io.svg/600px-Socket-io.svg.png" width="60" alt="socket.io" style="padding-right:10px;" align="left" />
 <br />
 <br />
 
