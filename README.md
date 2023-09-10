@@ -17,7 +17,9 @@
 <p width="960" style="padding-right: 10px;" align="left" >passport</p>
 <p width="960" style="padding-right:40px;" align="left" >passport-google-oauth20</p>
 <p width="960" style="padding-right:40px;" align="left" >cors</p>
-<p width="960" style="padding-right:40px;" align="left" >react-hot-toast</p>
+<p width="960" style="padding-right:40px;" align="left" >bcrypt</p>
+<p width="960" style="padding-right:40px;" align="left" >cookie-session</p>
+<p width="960" style="padding-right:40px;" align="left" >react-toastify</p>
 
 # summary of project
 In this project i worked on a inventory management app in three section. 1- inventory management of spare parts and equipment, 2- inventory management of products section , 3- managing the purchase and delivery section. i try to simulate all CRUD operation in this project and validation the forms with Yup and Formik. 
