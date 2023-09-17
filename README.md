@@ -22,7 +22,9 @@
 <p width="960" style="padding-right:40px;" align="left" >react-toastify</p>
 
 # summary of project
-In this project i worked on a inventory management app in three section. 1- inventory management of spare parts and equipment, 2- inventory management of products section , 3- managing the purchase and delivery section. i try to simulate all CRUD operation in this project and validation the forms with Yup and Formik. 
+This project is a fullstack project (MERN stack), that use from mongodb, expressjs, react and nodejs to handle a chat and login/signup pages. 
+validation in front-end has done with react-hook-form on form elements.
+user can signup or login even with google account.chat page that used from socket.io to handle the chat process and the chats store in mongo cloud as database
 
 # overview of project
 
